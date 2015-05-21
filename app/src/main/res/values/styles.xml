@@ -1,0 +1,140 @@
+<resources>
+
+ <!--   <style name="AppTheme" parent="@style/_AppTheme"/>
+
+    <style name="_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+    </style>
+-->
+    <style name="AuthBackground">
+        <item name="android:background">@drawable/background_fill</item>
+    </style>
+
+    <style name="AuthBackgroundImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:src">@drawable/background</item>
+    </style>
+
+    <style name="AuthTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DevTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">60dp</item>
+        <item name="android:layout_below">@+id/title</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AuthLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_below">@id/subtitle</item>
+        <item name="android:layout_marginLeft">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="textBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+    <style name="Theme.Example" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarItemBackground">@drawable/selectable_background_example</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Example</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Example</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Example</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Example</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Example</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_example</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_example</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Example</item>
+        <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+        <item name="android:actionOverflowButtonStyle">@style/Theme.Example.Overflow</item>
+        <item name="android:listViewStyle">@style/Theme.Example.LightPurpleBackground</item>
+        <item name="android:gridViewStyle">@style/Theme.Example.LightPurpleBackground.GridView</item>
+    </style>
+
+    <style name="Theme.Example.LightPurpleBackground.GridView">
+        <item name="android:padding">@dimen/user_grid_spacing</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <style name="Theme.Example.LightPurpleBackground">
+        <item name="android:background">@color/light_purple_background</item>
+    </style>
+
+    <style name="Theme.Example.Overflow" parent="@android:style/Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_overflow</item>
+    </style>
+
+    <style name="ActionBar.Solid.Example" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@drawable/ab_solid_example</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_example</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_example</item>
+        <item name="progressBarStyle">@style/ProgressBar.Example</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Example" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent_example</item>
+        <item name="progressBarStyle">@style/ProgressBar.Example</item>
+    </style>
+
+    <style name="PopupMenu.Example" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_example</item>
+    </style>
+
+    <style name="DropDownListView.Example" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_example</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Example" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_example</item>
+    </style>
+
+    <style name="DropDownNav.Example" parent="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_example</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_example</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_example</item>
+    </style>
+
+    <style name="ProgressBar.Example" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_example</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Example" parent="@style/Widget.AppCompat.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_example</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Example.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Example</item>
+      <!--  <item name="dropDownListViewStyle">@style/DropDownListView.Example</item>  -->
+    </style>
+
+</resources>

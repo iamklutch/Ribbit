@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/AuthBackground"
+                tools:context="jameshigashiyama.com.ribbit.ui.LoginActivity">
+
+    <ImageView
+        android:id="@+id/backgroundFrog"
+        style="@style/AuthBackgroundImage"/>
+
+    <TextView
+        android:text="@string/app_name"
+        android:id="@+id/title"
+        style="@style/AuthTitle"/>
+
+    <TextView
+        android:text="@string/yukidev"
+        android:id="@+id/subtitle"
+        style="@style/DevTitle"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        style="@style/AuthLayout">
+        <EditText
+            android:inputType="textPersonName"
+            android:hint="@string/username_hint"
+            android:id="@+id/loginText"
+            android:layout_below="@+id/subtitle"
+            style="@style/textBox"/>
+        <requestFocus />
+
+
+        <EditText
+            android:inputType="textPassword"
+            android:id="@+id/passwordField"
+            android:hint="@string/password_hint"
+            android:layout_below="@id/loginText"
+            style="@style/textBox"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:text="@string/login_text"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/button_custom"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_text"
+        android:id="@+id/signupText"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:textColor="#80FFFFFF"
+        android:paddingTop="16dp"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginProgressBar"
+        android:background="@android:color/transparent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+
+</RelativeLayout>
+
