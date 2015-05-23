@@ -18,6 +18,7 @@ import com.parse.SignUpCallback;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import jameshigashiyama.com.ribbit.R;
+import jameshigashiyama.com.ribbit.RibbitApplication;
 
 
 public class SignUpActivity extends Activity {
@@ -78,6 +79,10 @@ public class SignUpActivity extends Activity {
                         public void done(ParseException e) {
                             if (e == null) {
                                 // success creating user
+
+                                // gets the os installation type for the current user and stores it online for push notes
+                                RibbitApplication.updateParseInstallation(ParseUser.getCurrentUser());
+
                                 mProgressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

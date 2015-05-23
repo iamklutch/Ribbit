@@ -47,5 +47,7 @@
     <string name="title_activity_view_image">Ribbit</string>
     <string name="yukidev">A YukiDev Project</string>
     <string name="cancel_button_label">Cancel</string>
+    <string name="send_button_content_description">sendbutton</string>
+    <string name="push_message">You have a new Ribbit message from %s!</string>
 
 </resources>

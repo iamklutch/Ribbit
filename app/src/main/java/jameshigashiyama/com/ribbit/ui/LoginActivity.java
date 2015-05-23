@@ -19,6 +19,7 @@ import com.parse.ParseUser;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import jameshigashiyama.com.ribbit.R;
+import jameshigashiyama.com.ribbit.RibbitApplication;
 
 public class LoginActivity extends Activity {
 
@@ -83,6 +84,8 @@ public class LoginActivity extends Activity {
                          //   setSupportProgressBarIndeterminateVisibility(false);
                             if (e == null) {
                                 // success logging in
+                                RibbitApplication.updateParseInstallation(user);
+
                                 mProgressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -33,7 +33,7 @@ public class ViewImageActivity extends ActionBarActivity {
             public void run() {
                 finish();
             }
-        }, (60*1000));
+        }, (30*1000));
 
     }
 

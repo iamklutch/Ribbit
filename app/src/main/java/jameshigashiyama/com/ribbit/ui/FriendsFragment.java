@@ -7,8 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -19,6 +20,8 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import jameshigashiyama.com.ribbit.adapters.UserAdapter;
 import jameshigashiyama.com.ribbit.utils.ParseConstants;
 import jameshigashiyama.com.ribbit.R;
@@ -34,15 +37,19 @@ public class FriendsFragment extends Fragment {
     protected ParseRelation<ParseUser> mFriendRelation;
     protected ParseUser mCurrentUser;
     protected GridView mGridView;
+    protected ImageButton mSendButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
+        View rootView = inflater.inflate(R.layout.user_grid, container, false);
 
         mGridView = (GridView)rootView.findViewById(R.id.friendsGrid);
 
         TextView emptyTextView = (TextView)rootView.findViewById(android.R.id.empty);
         mGridView.setEmptyView(emptyTextView);
+
+        mSendButton = (ImageButton)rootView.findViewById(R.id.userGridImageButton);
+        mSendButton.setVisibility(View.INVISIBLE);
 
         return rootView;
     }
@@ -60,6 +67,7 @@ public class FriendsFragment extends Fragment {
             @Override
             public void done(List<ParseUser> friends, ParseException e) {
                 if (e == null) {
+
                     mFriends = friends;
 
                     String[] usernames = new String[mFriends.size()];
@@ -78,13 +86,13 @@ public class FriendsFragment extends Fragment {
 
                 } else {
                     Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(e.getMessage())
-                            .setTitle(R.string.error_title)
-                            .setPositiveButton(android.R.string.ok, null);
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//                    builder.setMessage(e.getMessage())
+//                            .setTitle(R.string.error_title)
+//                            .setPositiveButton(android.R.string.ok, null);
+//
+//                    AlertDialog dialog = builder.create();
+//                    dialog.show();
 
                 }
             }
