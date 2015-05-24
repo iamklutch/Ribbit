@@ -100,6 +100,8 @@ public class RecipientsActivity extends Activity {
                     sendPushNotifications();
                 }
                 else {
+                    Log.e(TAG, e.getMessage());
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
                     builder.setMessage(getString(R.string.error_sending_message))
                             .setTitle(getString(R.string.sorry))

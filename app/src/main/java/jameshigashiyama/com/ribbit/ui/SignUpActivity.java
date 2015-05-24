@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseSession;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -28,6 +31,7 @@ public class SignUpActivity extends Activity {
     protected EditText mEmail;
     protected Button mSignUpButton;
     protected Button mCancelButton;
+
     @InjectView(R.id.signUpProgressBar)ProgressBar mProgressBar;
 
     @Override
@@ -58,6 +62,9 @@ public class SignUpActivity extends Activity {
                 password = password.trim();
                 email = email.trim();
 
+             //   ParseUser currentUser = ParseUser.getCurrentUser();
+
+
                 if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                     builder.setMessage(R.string.signup_error_message)
@@ -70,6 +77,7 @@ public class SignUpActivity extends Activity {
                 } else {
                     // create new user
                     mProgressBar.setVisibility(View.VISIBLE);
+
                     ParseUser newUser = new ParseUser();
                     newUser.setUsername(username);
                     newUser.setPassword(password);
@@ -77,24 +85,34 @@ public class SignUpActivity extends Activity {
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if (e == null) {
-                                // success creating user
-
+                            if (e == null) {        // success creating user
                                 // gets the os installation type for the current user and stores it online for push notes
                                 RibbitApplication.updateParseInstallation(ParseUser.getCurrentUser());
 
-                                mProgressBar.setVisibility(View.INVISIBLE);
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                ParseUser.logOutInBackground(new LogOutCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+
+                                        mProgressBar.setVisibility(View.INVISIBLE);
+
+                                        Toast.makeText(SignUpActivity.this, getString(R.string.new_user_log_in_toast), Toast.LENGTH_LONG).show();
+
+                                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    }
+                                });
+
+
+
                             } else {
                                 mProgressBar.setVisibility(View.INVISIBLE);
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                                 builder.setMessage(e.getMessage())
                                         .setTitle(R.string.signup_error_title)
                                         .setPositiveButton(android.R.string.ok, null);
-
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
                             }
@@ -103,6 +121,7 @@ public class SignUpActivity extends Activity {
                 }
             }
         });
+
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

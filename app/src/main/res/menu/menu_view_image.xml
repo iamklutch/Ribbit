@@ -3,7 +3,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="jameshigashiyama.com.ribbit.ui.ViewImageActivity">
     <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
+          android:title="@string/action_done"
           android:orderInCategory="100"
           app:showAsAction="never"/>
 </menu>

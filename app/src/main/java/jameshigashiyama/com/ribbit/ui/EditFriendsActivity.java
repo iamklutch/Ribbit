@@ -3,6 +3,7 @@ package jameshigashiyama.com.ribbit.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -50,6 +52,7 @@ public class EditFriendsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_grid);
+        ButterKnife.inject(this);
 
 
         mGridView = (GridView)findViewById(R.id.friendsGrid);
@@ -68,7 +71,6 @@ public class EditFriendsActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        ButterKnife.inject(this);
 
         mCurrentUser = ParseUser.getCurrentUser();
         mFriendRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
@@ -103,12 +105,12 @@ public class EditFriendsActivity extends Activity {
                 }
                 else {
                     mProgressBar.setVisibility(View.INVISIBLE);
+
                     Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
                     builder.setMessage(e.getMessage())
                             .setTitle(R.string.error_title)
                             .setPositiveButton(android.R.string.ok, null);
-
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
@@ -155,6 +157,12 @@ public class EditFriendsActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
+                    Intent intent = new Intent(EditFriendsActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -162,13 +170,6 @@ public class EditFriendsActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-
-//    }
 
     protected AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -189,14 +190,15 @@ public class EditFriendsActivity extends Activity {
             mCurrentUser.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
-                    if (e == null){
+                    if (e == null) {
 
+                    } else {
+
+                        Toast.makeText(EditFriendsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                    else {
-                        Log.e(TAG, e.getMessage());
-                    }
-            }
-        });
+                }
+            });
+
         }
     };
 }

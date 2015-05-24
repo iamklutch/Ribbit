@@ -11,11 +11,14 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
+import com.parse.ParseSession;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -61,14 +64,21 @@ public class FriendsFragment extends Fragment {
         mCurrentUser = ParseUser.getCurrentUser();
         mFriendRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
+        ParseSession.getCurrentSessionInBackground();
+
         ParseQuery<ParseUser> query =  mFriendRelation.getQuery();
         query.addAscendingOrder(ParseConstants.KEY_USERNAME);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> friends, ParseException e) {
+
                 if (e == null) {
 
                     mFriends = friends;
+
+                    if (mFriends.size() == 0) {
+                        Toast.makeText(getActivity(), getString(R.string.add_friends_toast_label), Toast.LENGTH_LONG).show();
+                    }
 
                     String[] usernames = new String[mFriends.size()];
                     int i = 0;

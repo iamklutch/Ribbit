@@ -23,8 +23,7 @@ public class RibbitApplication extends Application {
         super.onCreate();
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "KvMrXLtr3iuM9lIHByW3VzUVcJ4CstxB5Rl0RPTB", "bQHKWUahRbV6WSJfeRjsCmi1Tr5v4oeCVOMjGxXd");
-
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParseUser.enableRevocableSessionInBackground();
 
         ParsePush.subscribeInBackground("", new SaveCallback() {
             @Override
@@ -36,6 +35,8 @@ public class RibbitApplication extends Application {
                 }
             }
         });
+
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
     }
 
